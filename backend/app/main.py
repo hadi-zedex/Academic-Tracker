@@ -31,7 +31,6 @@ from app.schemas.job_tracking import JobTrackingOut, JobTrackingCreate
 from app.schemas.notification import NotificationType, NotificationCreate, NotificationOut
 from app.schemas.calendar import CalendarEventItem
 
-from fastapi.middleware.cors import CORSMiddleware
 
 # this creates all tables that don't already exist, based on the models above
 @asynccontextmanager
@@ -42,20 +41,6 @@ async def lifespan(app: FastAPI):
     stop_scheduler()
 
 app = FastAPI(lifespan=lifespan)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "*"
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 @app.get("/")
 def root():
