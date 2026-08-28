@@ -11,7 +11,7 @@ from jose import jwt, JWTError
 
 from sqlalchemy.orm import Session
 
-from app.database import get_db
+from app.utilities.database import get_db
 from app.models.student import Student
 
 

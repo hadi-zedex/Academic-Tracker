@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean
-from app.database import Base
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Boolean, CheckConstraint
+from app.utilities.database import Base
+
 
 class Notification(Base):
     __tablename__="notifications"
@@ -12,4 +13,8 @@ class Notification(Base):
     message=Column(String)
     created_at=Column(DateTime)
     is_read=Column(Boolean, default=False)
-    
+    notification_type= Column(String)
+
+    __table_args__=(
+        CheckConstraint("notification_type in ('1hr', '3hr', '8pm', 'post')"),
+    )

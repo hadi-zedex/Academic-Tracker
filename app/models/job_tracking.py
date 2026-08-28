@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, ForeignKey
-from app.database import Base
+from app.utilities.database import Base
 
 class JobTracking(Base):
     __tablename__="job_trackings"

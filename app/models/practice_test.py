@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, DateTime
-from app.database import Base
+from app.utilities.database import Base
 
 class PracticeTest(Base):
     __tablename__="practice_tests"
