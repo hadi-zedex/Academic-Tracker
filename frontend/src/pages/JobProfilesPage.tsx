@@ -52,9 +52,7 @@ export const JobProfilesPage: React.FC<JobProfilesPageProps> = ({
 
   const handleDeleteJob = async (job: Job) => {
     const isShared = job.created_by !== student?.student_id;
-    const confirmMessage = isShared
-      ? `Are you sure you want to delete the SHARED job "${job.company_name}"? This removes it for all students.`
-      : `Are you sure you want to delete your personal job "${job.company_name}"?`;
+    const confirmMessage = `Are you sure you want to delete the job "${job.company_name}"?`;
 
     if (!window.confirm(confirmMessage)) return;
 
@@ -150,7 +148,6 @@ export const JobProfilesPage: React.FC<JobProfilesPageProps> = ({
         ) : (
           filteredJobs.map((job) => {
             const isTracked = trackedJobIds.has(job.job_id);
-            const isOwner = job.created_by === student?.student_id;
             const deadlineText = formatDeadlineText(job.job_deadline);
             const isClosed = deadlineText === 'Applications closed';
 
@@ -183,12 +180,6 @@ export const JobProfilesPage: React.FC<JobProfilesPageProps> = ({
                     >
                       {isTracked ? 'Applied / Tracked' : deadlineText}
                     </span>
-
-                    {isAdmin && (
-                      <span className="status-tag status-shared-admin" style={{ fontSize: '0.65rem' }}>
-                        {isOwner ? 'Personal' : 'Shared (Batch)'}
-                      </span>
-                    )}
                   </div>
                 </div>
               </div>
@@ -201,7 +192,7 @@ export const JobProfilesPage: React.FC<JobProfilesPageProps> = ({
       <button
         className="fab-button"
         onClick={() => setIsCreateJobOpen(true)}
-        title={isAdmin ? 'Post Shared Job to Batch' : 'Add Personal Job'}
+        title="Post Job"
         aria-label="Add job"
       >
         <Plus size={24} />

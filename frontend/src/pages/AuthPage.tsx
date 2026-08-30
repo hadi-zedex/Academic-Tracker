@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
-import { Briefcase, Lock, Mail, User, ArrowRight, Shield } from 'lucide-react';
+import { Briefcase, Lock, Mail, User, ArrowRight } from 'lucide-react';
 
 export const AuthPage: React.FC = () => {
   const { login, signup } = useAuth();
@@ -44,12 +44,6 @@ export const AuthPage: React.FC = () => {
     }
   };
 
-  const fillDemoAccount = (demoEmail: string, demoPass: string) => {
-    setMode('login');
-    setEmail(demoEmail);
-    setPassword(demoPass);
-  };
-
   return (
     <div style={{ padding: '32px 20px', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
       <div style={{ textAlign: 'center', marginBottom: '24px' }}>
@@ -89,7 +83,7 @@ export const AuthPage: React.FC = () => {
                 type="text"
                 className="form-input-mobile"
                 style={{ paddingLeft: '36px' }}
-                placeholder="Abdul Hadi"
+                placeholder="Your Full Name"
                 value={studentName}
                 onChange={(e) => setStudentName(e.target.value)}
                 required
@@ -143,51 +137,6 @@ export const AuthPage: React.FC = () => {
           <ArrowRight size={16} />
         </button>
       </form>
-
-      {/* Quick Test Accounts */}
-      <div
-        style={{
-          marginTop: '24px',
-          padding: '14px',
-          backgroundColor: 'var(--bg-subtle)',
-          borderRadius: '12px',
-          border: '1px solid var(--border-main)',
-        }}
-      >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '4px' }}>
-          <Shield size={14} className="text-primary" />
-          <span>Quick Demo Accounts:</span>
-        </div>
-        <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '8px' }}>
-          Tap to pre-fill test credentials:
-        </p>
-        <div style={{ display: 'flex', gap: '6px' }}>
-          <button
-            type="button"
-            className="btn-outline-mobile"
-            style={{ flex: 1, padding: '6px 4px', fontSize: '0.75rem', justifyContent: 'center' }}
-            onClick={() => fillDemoAccount('alice@test.com', 'password123')}
-          >
-            👑 Alice (Admin)
-          </button>
-          <button
-            type="button"
-            className="btn-outline-mobile"
-            style={{ flex: 1, padding: '6px 4px', fontSize: '0.75rem', justifyContent: 'center' }}
-            onClick={() => fillDemoAccount('bob@test.com', 'password123')}
-          >
-            🎓 Bob (Student)
-          </button>
-          <button
-            type="button"
-            className="btn-outline-mobile"
-            style={{ flex: 1, padding: '6px 4px', fontSize: '0.75rem', justifyContent: 'center' }}
-            onClick={() => fillDemoAccount('carl@test.com', 'password123')}
-          >
-            🎓 Carl (Student)
-          </button>
-        </div>
-      </div>
     </div>
   );
 };

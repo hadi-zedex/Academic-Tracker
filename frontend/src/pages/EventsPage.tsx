@@ -109,12 +109,9 @@ export const EventsPage: React.FC<EventsPageProps> = ({
 
       <div style={{ padding: '16px' }}>
         {filteredEvents.length === 0 ? (
-          <div className="empty-state-box" style={{ backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid var(--border-main)' }}>
+          <div className="empty-state-box" style={{ backgroundColor: '#ffffff', borderRadius: '12px', border: '1px solid var(--border-main)', padding: '40px 20px' }}>
             <CalendarCheck className="empty-state-icon" />
             <p className="empty-state-title">No scheduled events</p>
-            <p className="empty-state-desc">
-              When you track a job or an admin schedules an OA/Interview round, it will automatically appear here and on your Monthly Calendar.
-            </p>
           </div>
         ) : (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
