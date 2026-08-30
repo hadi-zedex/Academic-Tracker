@@ -13,8 +13,6 @@ frontend/.env
 .DS_Store
 Thumbs.db
 
-
 reference_images
-docs
 
 /app
