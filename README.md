@@ -1,4 +1,4 @@
-# 📱 Placement Tracker (Mobile Web App)
+# 📱 Academic Tracker (Mobile Web App)
 
 A modern, mobile-first placement tracking and notification platform built for college students to never miss an application deadline, OA (Online Assessment), or interview round.
 
