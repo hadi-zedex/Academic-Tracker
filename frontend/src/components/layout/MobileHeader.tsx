@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useNotifications } from '../../context/NotificationContext';
-import { useAuth } from '../../context/AuthContext';
 import { Bell, Briefcase, Plus } from 'lucide-react';
 import { NotificationDrawer } from './NotificationDrawer';
 
@@ -14,7 +13,6 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
   onOpenCreateJob,
 }) => {
   const { unreadCount } = useNotifications();
-  const { isAdmin } = useAuth();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
@@ -32,7 +30,7 @@ export const MobileHeader: React.FC<MobileHeaderProps> = ({
             <button
               className="header-icon-btn"
               onClick={onOpenCreateJob}
-              title={isAdmin ? 'Post a new shared job for the batch' : 'Add a personal job'}
+              title="Post Job"
               aria-label="Add job"
             >
               <Plus size={20} />

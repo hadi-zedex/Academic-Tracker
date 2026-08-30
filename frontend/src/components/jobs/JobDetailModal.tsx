@@ -89,16 +89,11 @@ export const JobDetailModal: React.FC<JobDetailModalProps> = ({
           </button>
         </div>
 
-        {/* Status / Role Info */}
+        {/* Status Info */}
         <div style={{ display: 'flex', gap: '8px', marginBottom: '16px' }}>
           <span className={`status-tag ${isTracked ? 'status-tracked' : 'status-open'}`}>
             {isTracked ? 'Applied / Tracked' : 'Not Tracked'}
           </span>
-          {isAdmin && (
-            <span className="status-tag status-shared-admin">
-              {isOwner ? 'Personal Entry' : 'Shared (Batch)'}
-            </span>
-          )}
         </div>
 
         {/* Deadline Card */}

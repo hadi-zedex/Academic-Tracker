@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Modal } from '../common/Modal';
 import type { JobCreate } from '../../types';
-import { useAuth } from '../../context/AuthContext';
 import { useToast } from '../../context/ToastContext';
 import { createJob } from '../../api/jobs';
 
@@ -16,7 +15,6 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
   onClose,
   onJobCreated,
 }) => {
-  const { isAdmin } = useAuth();
   const { showToast } = useToast();
 
   const [companyName, setCompanyName] = useState('');
@@ -39,12 +37,7 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
         job_deadline: new Date(deadline).toISOString(),
       };
       await createJob(payload);
-      showToast(
-        isAdmin
-          ? 'Shared job posted to batch catalog!'
-          : 'Personal job created and added to your tracker!',
-        'success'
-      );
+      showToast('Job posted successfully!', 'success');
       setCompanyName('');
       setRole('');
       setDeadline('');
@@ -58,30 +51,8 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title={isAdmin ? 'Post Shared Job to Batch' : 'Add Personal Job'}>
+    <Modal isOpen={isOpen} onClose={onClose} title="Post a Job">
       <form onSubmit={handleSubmit}>
-        <div
-          style={{
-            padding: '10px 12px',
-            borderRadius: 'var(--radius-sm)',
-            background: isAdmin ? 'var(--accent-purple-bg)' : 'var(--bg-subtle)',
-            border: `1px solid ${isAdmin ? 'var(--accent-purple)' : 'var(--border-main)'}`,
-            marginBottom: '16px',
-            fontSize: '0.8rem',
-            color: isAdmin ? 'var(--accent-purple-text)' : 'var(--text-secondary)',
-          }}
-        >
-          {isAdmin ? (
-            <span>
-              ⭐ <strong>Admin Broadcast:</strong> This job will be posted to the shared catalog and broadcast to all students immediately.
-            </span>
-          ) : (
-            <span>
-              🔒 <strong>Personal Entry:</strong> This job is visible only to you. You can schedule your own OA, PPT, and Interview events for it.
-            </span>
-          )}
-        </div>
-
         <div className="form-group-mobile">
           <label className="form-label-mobile" htmlFor="company_name">Company Name</label>
           <input
@@ -125,7 +96,7 @@ export const CreateJobModal: React.FC<CreateJobModalProps> = ({
             Cancel
           </button>
           <button type="submit" className="btn-primary-mobile" disabled={isSubmitting} style={{ flex: 1, justifyContent: 'center' }}>
-            {isSubmitting ? 'Posting...' : isAdmin ? 'Post to Batch' : 'Create Job'}
+            {isSubmitting ? 'Posting...' : 'Post Job'}
           </button>
         </div>
       </form>
